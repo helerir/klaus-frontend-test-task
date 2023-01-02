@@ -1,5 +1,9 @@
 # klaus-test-assignment
 
+Simple Vue 3 + typescript project for the test assignment.
+Using design from Figma: https://www.figma.com/file/OXpV1JmHeq9AMZqSWpC3tL/FE-Test-Task?node-id=1%3A528
+and Naive-ui component library for UI components.
+
 This template should help get you started developing with Vue 3 in Vite.
 
 ## Recommended IDE Setup
