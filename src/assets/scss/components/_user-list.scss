@@ -56,9 +56,21 @@
         }
       }
 
-      .n-thing .n-thing-main .n-thing-header {
-        .n-thing-header__title {
+      .n-list-item__divider {
+        display: none;
+      }
+
+      .n-thing .n-thing-main {
+        .n-thing-header {
+          .n-thing-header__title {
+            font-size: 14px;
+            line-height: 1;
+          }
+        }
+
+        .n-thing-main__description {
           font-size: 14px;
+          color: map-get($grays, "gray60" );
           line-height: 1;
         }
       }
@@ -66,6 +78,15 @@
       .n-col {
         display: flex;
         align-items: center;
+      }
+
+      .n-tag {
+        font-weight: 500;
+      }
+
+      &.selected {
+        background-color: map-get($grays, "gray10" );
+        border-left: 4px solid $brand;
       }
     }
   }
