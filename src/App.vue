@@ -5,7 +5,7 @@
 </template>
 
 <script lang="ts">
-import themeOverrides from './naive-ui/naiveOverrides';
+import themeOverrides from './naive-ui/themeOverrides';
 import { RouterView } from "vue-router";
 import { NConfigProvider } from 'naive-ui';
 import { defineComponent } from 'vue';
@@ -16,7 +16,7 @@ export default defineComponent({
       themeOverrides,
     };
   },
-  name: 'testAssignmentApp',
+  name: 'TestAssignmentApp',
   components: {
     RouterView,
     NConfigProvider,
