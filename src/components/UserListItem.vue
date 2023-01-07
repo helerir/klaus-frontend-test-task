@@ -1,8 +1,5 @@
 <template>
-  <n-list-item
-    @click="checkValue()"
-    :class="{ selected: checkedValue || checked }"
-  >
+  <n-list-item @click="checkValue()" :class="{ selected: checkedValue || checked }">
     <template #prefix>
       <n-checkbox :checked="checkedValue || checked" />
     </template>
@@ -17,7 +14,7 @@
             />
           </template>
           <template #header>{{ user.name }}</template>
-          <template #description>{{ user.email }}</template>
+          <template #description>{{ user.email.toLowerCase() }}</template>
         </n-thing>
       </n-col>
       <n-col :span="8">
@@ -52,17 +49,7 @@
 <script lang="ts">
 import { defineComponent } from "vue";
 import type { PropType } from "vue";
-import {
-  NSpace,
-  NListItem,
-  NCheckbox,
-  NButton,
-  NAvatar,
-  NThing,
-  NRow,
-  NCol,
-  NTag,
-} from "naive-ui";
+import { NSpace, NListItem, NCheckbox, NButton, NAvatar, NThing, NRow, NCol, NTag } from "naive-ui";
 import EditIcon from "@/components/icons/EditIcon.vue";
 import DeleteIcon from "@/components/icons/DeleteIcon.vue";
 import type { userProperties } from "@/types/user.types";
@@ -100,8 +87,8 @@ export default defineComponent({
   methods: {
     userRole(): string | undefined {
       const role = this.permissions.find((p) => p.value == this.user.role);
-      this.tagTextColor = role?.textColor;
-      this.tagColor = role?.tagColor;
+      this.tagTextColor = role!.textColor;
+      this.tagColor = role!.tagColor;
       return role?.title;
     },
     checkValue() {

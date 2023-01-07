@@ -15,11 +15,7 @@
             </template>
             Edit
           </n-button>
-          <n-button
-            icon-placement="left"
-            @click="deleteUsers()"
-            :disabled="btnDisabled"
-          >
+          <n-button icon-placement="left" @click="deleteUsers()" :disabled="btnDisabled">
             <template #icon>
               <DeleteIcon />
             </template>
@@ -50,7 +46,7 @@ import DeleteIcon from "@/components/icons/DeleteIcon.vue";
 import type { userWithPriorityProperties } from "@/types/userWithPriority.types";
 
 export default defineComponent({
-  name: "HomeView",
+  name: "UsersContainer",
   data() {
     return {
       loading: false,
@@ -75,9 +71,7 @@ export default defineComponent({
     },
     checkedUsersLength() {
       if (this.allUsersChecked || this.checkedUsersList.length) {
-        return this.allUsersChecked
-          ? this.allUsers.length
-          : this.checkedUsersList.length;
+        return this.allUsersChecked ? this.allUsers.length : this.checkedUsersList.length;
       } else {
         return 0;
       }
@@ -97,9 +91,7 @@ export default defineComponent({
       if (value) {
         this.checkedUsersList.push(user);
       } else {
-        const userIndex = this.checkedUsersList.findIndex(
-          (u: userWithPriorityProperties) => u.id == user.id
-        );
+        const userIndex = this.checkedUsersList.findIndex((u: userWithPriorityProperties) => u.id == user.id);
         this.checkedUsersList.splice(userIndex, 1);
       }
     },

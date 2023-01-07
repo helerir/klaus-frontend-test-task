@@ -1,19 +1,12 @@
 <template>
-  <n-list hoverable class="user-list">
+  <n-list hoverable class="user-list" v-if="users.length">
     <template #header>
       <n-row gutter="12">
         <n-col :span="16">
-          <n-checkbox :checked="allUsersChecked" @click="checkAllUsers()">
-            User
-          </n-checkbox>
+          <n-checkbox :checked="allUsersChecked" @click="checkAllUsers()"> User </n-checkbox>
         </n-col>
         <n-col :span="8">
-          <n-button
-            text
-            size="tiny"
-            icon-placement="right"
-            @click="reOrderUserList()"
-          >
+          <n-button text size="tiny" icon-placement="right" @click="reOrderUserList()">
             Permission
             <template #icon>
               <n-icon :class="{ 'icon-rotate': rotateIcon }">
@@ -24,15 +17,13 @@
         </n-col>
       </n-row>
     </template>
-    <div v-if="users.length">
-      <UserListItem
-        :user="user"
-        :checked="allUsersChecked"
-        v-for="user in users"
-        :key="user.id"
-        @userCheckedValue="checkedUser"
-      />
-    </div>
+    <UserListItem
+      :user="user"
+      :checked="allUsersChecked"
+      v-for="user in users"
+      :key="user.id"
+      @userCheckedValue="checkedUser"
+    />
   </n-list>
 </template>
 
@@ -60,9 +51,7 @@ export default defineComponent({
   methods: {
     reOrderUserList() {
       this.rotateIcon = !this.rotateIcon;
-      let reversedUsers = this.users;
-      reversedUsers = reversedUsers.reverse();
-      this.$store.commit("setUsers", reversedUsers);
+      this.$store.commit("setUsers", this.users.slice().reverse());
     },
     checkedUser({ value, user }: any) {
       this.$emit("checkedUser", { value: value, user: user });

@@ -21,15 +21,7 @@
 
 <script lang="ts">
 import { defineComponent } from "vue";
-import {
-  NLayout,
-  NLayoutHeader,
-  NLayoutContent,
-  NSpace,
-  NH1,
-  NInput,
-  NButton,
-} from "naive-ui";
+import { NLayout, NLayoutHeader, NLayoutContent, NSpace, NH1, NInput, NButton } from "naive-ui";
 import UsersContainer from "@/components/UsersContainer.vue";
 import SearchIcon from "@/components/icons/SearchIcon.vue";
 

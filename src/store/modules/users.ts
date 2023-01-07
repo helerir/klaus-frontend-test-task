@@ -49,9 +49,7 @@ const usersModule: Module<any, any> = {
       state.users = users;
     },
     deleteUser(state, userId: number) {
-      const userIndex = state.users.findIndex(
-        (u: userProperties) => u.id == userId
-      );
+      const userIndex = state.users.findIndex((u: userProperties) => u.id == userId);
       state.users.splice(userIndex, 1);
     },
   },
@@ -63,10 +61,9 @@ const usersModule: Module<any, any> = {
     getUsersWithRolePriorities(state): userWithPriorityProperties[] {
       const usersWithPriorities = [] as userWithPriorityProperties[];
       if (state.users.length) {
-        state.users.forEach((user: userProperties) => {
-          const permission = state.permissions.find(
-            (p: permissionProperties) => p.value == user.role
-          );
+        const showNineUsers = state.users.slice(0, 9);
+        showNineUsers.forEach((user: userProperties) => {
+          const permission = state.permissions.find((p: permissionProperties) => p.value == user.role);
           if (permission) {
             const userWithPriority = { ...user, priority: permission.priority };
             usersWithPriorities.push(userWithPriority);
