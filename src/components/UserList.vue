@@ -1,10 +1,13 @@
 <template>
   <n-list hoverable class="user-list">
     <template #header>
-      <n-checkbox :checked="allUsersChecked" @click="checkAllUsers()" />
-      <n-row gutter="6">
-        <n-col span="16">User</n-col>
-        <n-col span="8">
+      <n-row gutter="12">
+        <n-col :span="16">
+          <n-checkbox :checked="allUsersChecked" @click="checkAllUsers()">
+            User
+          </n-checkbox>
+        </n-col>
+        <n-col :span="8">
           <n-button
             text
             size="tiny"
@@ -13,7 +16,7 @@
           >
             Permission
             <template #icon>
-              <n-icon>
+              <n-icon :class="{ 'icon-rotate': rotateIcon }">
                 <ArrowDownIcon />
               </n-icon>
             </template>
@@ -45,6 +48,7 @@ export default defineComponent({
   data() {
     return {
       allUsersChecked: false,
+      rotateIcon: false,
     };
   },
   props: {
@@ -55,6 +59,7 @@ export default defineComponent({
   },
   methods: {
     reOrderUserList() {
+      this.rotateIcon = !this.rotateIcon;
       let reversedUsers = this.users;
       reversedUsers = reversedUsers.reverse();
       this.$store.commit("setUsers", reversedUsers);

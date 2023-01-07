@@ -10,7 +10,11 @@
       <n-col :span="16">
         <n-thing>
           <template #avatar>
-            <n-avatar round :src="user.avatar" />
+            <n-avatar
+              round
+              :src="user.avatar"
+              fallback-src="https://st3.depositphotos.com/1767687/16607/v/450/depositphotos_166074422-stock-illustration-default-avatar-profile-icon-grey.jpg"
+            />
           </template>
           <template #header>{{ user.name }}</template>
           <template #description>{{ user.email }}</template>

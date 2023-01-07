@@ -2,7 +2,12 @@
   <n-card class="users-container">
     <header class="users-container__header">
       <n-space align="center" :size="[25, 10]">
-        <p>{{ checkedUsersLength }} users selected</p>
+        <p>
+          {{ checkedUsersLength }}
+          <span v-if="checkedUsersLength == 1">user</span>
+          <span v-else>users</span>
+          selected
+        </p>
         <n-space>
           <n-button icon-placement="left" :disabled="btnDisabled">
             <template #icon>

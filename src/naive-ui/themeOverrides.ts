@@ -37,6 +37,9 @@ const themeOverrides: GlobalThemeOverrides = {
   },
   Checkbox: {
     borderRadius: "3px",
+    fontSizeMedium: "12px",
+    textColor: "#718096",
+    labelPadding: "0 12px",
   },
   Input: {
     border: "1px solid #E2E8F0",

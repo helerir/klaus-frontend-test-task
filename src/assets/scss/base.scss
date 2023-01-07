@@ -27,12 +27,20 @@ body {
     }
   }
 
-  &:hover {
-    .n-icon {
-      path {
-        stroke: $brand
+  &:not(:disabled) {
+    &:hover {
+      .n-icon {
+        path {
+          stroke: $brand
+        }
       }
     }
+  }
+}
+
+.n-avatar {
+  img {
+    object-fit: cover;
   }
 }
 

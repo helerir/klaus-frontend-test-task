@@ -22,6 +22,7 @@
         color: map-get($grays, "gray60");
         height: 18px;
         font-weight: 400 !important;
+        padding: 0 6px;
       }
     }
 
@@ -72,6 +73,12 @@
           font-size: 14px;
           color: map-get($grays, "gray60" );
           line-height: 1;
+        }
+
+        .n-thing-avatar, .n-thing-header-wrapper {
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
         }
       }
 
