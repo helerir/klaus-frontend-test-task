@@ -1,7 +1,10 @@
 <template>
-  <n-list-item @click="checkedValue = !checkedValue" :class="{'selected': checkedValue}">
+  <n-list-item
+    @click="checkValue()"
+    :class="{ selected: checkedValue || checked }"
+  >
     <template #prefix>
-      <n-checkbox :checked="checkedValue" />
+      <n-checkbox :checked="checkedValue || checked" />
     </template>
     <n-row gutter="12">
       <n-col :span="16">
@@ -32,7 +35,7 @@
           </template>
           Edit
         </n-button>
-        <n-button @click.stop.prevent>
+        <n-button @click.stop.prevent="deleteUser()">
           <template #icon>
             <DeleteIcon />
           </template>
@@ -43,8 +46,8 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue';
-import type { PropType } from 'vue';
+import { defineComponent } from "vue";
+import type { PropType } from "vue";
 import {
   NSpace,
   NListItem,
@@ -55,32 +58,39 @@ import {
   NRow,
   NCol,
   NTag,
-} from 'naive-ui';
-import EditIcon from '@/components/icons/EditIcon.vue';
-import DeleteIcon from '@/components/icons/DeleteIcon.vue';
-import type { userProperties } from '@/types/user.types';
-import type { permissionProperties } from '@/types/permission.types';
-import users from '@/store/modules/users';
+} from "naive-ui";
+import EditIcon from "@/components/icons/EditIcon.vue";
+import DeleteIcon from "@/components/icons/DeleteIcon.vue";
+import type { userProperties } from "@/types/user.types";
+import type { permissionProperties } from "@/types/permission.types";
 
 export default defineComponent({
-  name: 'UserListItem',
+  name: "UserListItem",
   data() {
     return {
       permissions: [] as permissionProperties[],
       checkedValue: false,
-      tagTextColor: '' || undefined,
-      tagColor: '' || undefined
+      tagTextColor: "",
+      tagColor: "",
     };
   },
   created() {
     this.permissions = this.getPermissions;
   },
   props: {
-    user: { type: Object as PropType<userProperties>, required: true }
+    user: { type: Object as PropType<userProperties>, required: true },
+    checked: Boolean,
+  },
+  watch: {
+    checked(value) {
+      if (!value) {
+        this.checkedValue = false;
+      }
+    },
   },
   computed: {
     getPermissions(): permissionProperties[] {
-      return users.getters.getPermissions();
+      return this.$store.getters.getPermissions;
     },
   },
   methods: {
@@ -89,6 +99,16 @@ export default defineComponent({
       this.tagTextColor = role?.textColor;
       this.tagColor = role?.tagColor;
       return role?.title;
+    },
+    checkValue() {
+      this.checkedValue = !this.checkedValue;
+      this.$emit("userCheckedValue", {
+        value: this.checkedValue,
+        user: this.user,
+      });
+    },
+    deleteUser() {
+      this.$store.commit("deleteUser", this.user.id);
     },
   },
   components: {
@@ -103,6 +123,6 @@ export default defineComponent({
     NTag,
     EditIcon,
     DeleteIcon,
-  }
-})
+  },
+});
 </script>

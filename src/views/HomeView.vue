@@ -20,7 +20,7 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue';
+import { defineComponent } from "vue";
 import {
   NLayout,
   NLayoutHeader,
@@ -29,12 +29,12 @@ import {
   NH1,
   NInput,
   NButton,
-} from 'naive-ui';
-import UsersContainer from '@/components/UsersContainer.vue'
-import SearchIcon from '@/components/icons/SearchIcon.vue';
+} from "naive-ui";
+import UsersContainer from "@/components/UsersContainer.vue";
+import SearchIcon from "@/components/icons/SearchIcon.vue";
 
 export default defineComponent({
-  name: 'HomeView',
+  name: "HomeView",
   components: {
     NLayout,
     NLayoutHeader,
@@ -45,6 +45,6 @@ export default defineComponent({
     NButton,
     SearchIcon,
     UsersContainer,
-  }
-})
+  },
+});
 </script>
