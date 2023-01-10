@@ -99,6 +99,7 @@ export default defineComponent({
       this.checkedUsersList.forEach((user: userWithPriorityProperties) => {
         this.$store.commit("deleteUser", user.id);
       });
+      this.checkedUsersList = [];
     },
     deleteUsers() {
       if (this.allUsersChecked) {

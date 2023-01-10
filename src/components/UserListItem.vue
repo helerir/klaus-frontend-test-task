@@ -100,6 +100,10 @@ export default defineComponent({
     },
     deleteUser() {
       this.$store.commit("deleteUser", this.user.id);
+      this.$emit("userCheckedValue", {
+        value: false,
+        user: this.user,
+      });
     },
   },
   components: {
