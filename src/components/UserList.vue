@@ -17,25 +17,40 @@
         </n-col>
       </n-row>
     </template>
-    <UserListItem
-      :user="user"
-      :checked="allUsersChecked"
-      v-for="user in users"
-      :key="user.id"
-      @userCheckedValue="checkedUser"
-    />
+    <div v-bind="containerProps" style="height: 624px">
+      <div v-bind="wrapperProps">
+        <UserListItem
+          :user="user.data"
+          :checked="allUsersChecked"
+          v-for="user in list"
+          :key="user.data.id"
+          @userCheckedValue="checkedUser"
+        />
+      </div>
+    </div>
   </n-list>
 </template>
 
 <script lang="ts">
-import { defineComponent, type PropType } from "vue";
+import { defineComponent, type PropType, toRef } from "vue";
 import { NList, NCheckbox, NRow, NCol, NButton, NIcon } from "naive-ui";
 import UserListItem from "@/components/UserListItem.vue";
 import ArrowDownIcon from "@/components/icons/ArrowDownIcon.vue";
 import type { userWithPriorityProperties } from "@/types/userWithPriority.types";
+import { useVirtualList } from "@vueuse/core";
 
 export default defineComponent({
   name: "UserList",
+  setup(props) {
+    const usersData = toRef(props, "users");
+
+    const { list, containerProps, wrapperProps } = useVirtualList(usersData, {
+      itemHeight: 68,
+      overscan: 20,
+    });
+
+    return { list, containerProps, wrapperProps };
+  },
   data() {
     return {
       allUsersChecked: false,

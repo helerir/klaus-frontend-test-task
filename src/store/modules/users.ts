@@ -61,8 +61,8 @@ const usersModule: Module<any, any> = {
     getUsersWithRolePriorities(state): userWithPriorityProperties[] {
       const usersWithPriorities = [] as userWithPriorityProperties[];
       if (state.users.length) {
-        const showNineUsers = state.users.slice(0, 9);
-        showNineUsers.forEach((user: userProperties) => {
+        //const showNineUsers = state.users.slice(0, 9);
+        state.users.forEach((user: userProperties) => {
           const permission = state.permissions.find((p: permissionProperties) => p.value == user.role);
           if (permission) {
             const userWithPriority = { ...user, priority: permission.priority };
@@ -76,8 +76,10 @@ const usersModule: Module<any, any> = {
 
   actions: {
     async fetchUsers({ commit }) {
-      return await mockAPI.fetchUsers().then((response) => {
-        commit("setUsers", response.users);
+      return await mockAPI.fetchUsers().then(async (response) => {
+        if (response.users) {
+          commit("setUsers", response.users);
+        }
       });
     },
   },

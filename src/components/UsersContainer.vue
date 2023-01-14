@@ -79,7 +79,7 @@ export default defineComponent({
   },
   methods: {
     async fetchAllUsers() {
-      return await this.$store.dispatch("fetchUsers");
+      await this.$store.dispatch("fetchUsers");
     },
     orderUsers() {
       const orderedUsers = this.allUsers.sort(function (a, b) {
