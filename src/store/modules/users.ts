@@ -9,6 +9,7 @@ export interface State {
   permissions: permissionProperties[];
 }
 
+// Define initial user module states
 const usersModule: Module<any, any> = {
   state: {
     users: [] as userProperties[],
@@ -44,6 +45,7 @@ const usersModule: Module<any, any> = {
     ] as permissionProperties[],
   },
 
+  // Define mutations to change initial states
   mutations: {
     setUsers(state, users: userProperties[]) {
       state.users = users;
@@ -54,11 +56,13 @@ const usersModule: Module<any, any> = {
     },
   },
 
+  // Define getters to return state data and updates
   getters: {
     getPermissions(state): permissionProperties[] {
       return state.permissions;
     },
     getUsersWithRolePriorities(state): userWithPriorityProperties[] {
+      // Get all users that are set to state and connect them to permission priorities by roles
       const usersWithPriorities = [] as userWithPriorityProperties[];
       if (state.users.length) {
         //const showNineUsers = state.users.slice(0, 9);
@@ -74,6 +78,7 @@ const usersModule: Module<any, any> = {
     },
   },
 
+  // Define actions to commit any data related mutations and use data related async functions
   actions: {
     async fetchUsers({ commit }) {
       return await mockAPI.fetchUsers().then(async (response) => {

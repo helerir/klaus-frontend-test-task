@@ -66,6 +66,7 @@ export default defineComponent({
     };
   },
   created() {
+    // set permissions data
     this.permissions = this.getPermissions;
   },
   props: {
@@ -74,6 +75,7 @@ export default defineComponent({
   },
   watch: {
     checked(value) {
+      // watched for checked property value updates
       if (!value) {
         this.checkedValue = false;
       }
@@ -81,17 +83,20 @@ export default defineComponent({
   },
   computed: {
     getPermissions(): permissionProperties[] {
+      // Get permissions from store state
       return this.$store.getters.getPermissions;
     },
   },
   methods: {
     userRole(): string | undefined {
+      // Find user role and set data to use for role tag
       const role = this.permissions.find((p) => p.value == this.user.role);
       this.tagTextColor = role!.textColor;
       this.tagColor = role!.tagColor;
       return role?.title;
     },
     checkValue() {
+      // Select user on click of the user list item and emit data to parent
       this.checkedValue = !this.checkedValue;
       this.$emit("userCheckedValue", {
         value: this.checkedValue,
@@ -99,6 +104,8 @@ export default defineComponent({
       });
     },
     deleteUser() {
+      // delete user on delete button click and emit this user to parent to
+      // remove it from checkedUsersList in other parent
       this.$store.commit("deleteUser", this.user.id);
       this.$emit("userCheckedValue", {
         value: false,

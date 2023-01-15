@@ -1,3 +1,4 @@
+// Type definition for user with added role priority
 export interface userWithPriorityProperties {
   avatar: string;
   email: string;

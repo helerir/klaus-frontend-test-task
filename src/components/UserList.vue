@@ -42,8 +42,10 @@ import { useVirtualList } from "@vueuse/core";
 export default defineComponent({
   name: "UserList",
   setup(props) {
+    // Get user props value and make it reactive in setup function
     const usersData = toRef(props, "users");
 
+    // User virtual scroll List component from VueUser, first parameter sets the list to use
     const { list, containerProps, wrapperProps } = useVirtualList(usersData, {
       itemHeight: 68,
       overscan: 20,
@@ -65,13 +67,17 @@ export default defineComponent({
   },
   methods: {
     reOrderUserList() {
+      // On permissions button click reverse the users list
       this.rotateIcon = !this.rotateIcon;
       this.$store.commit("setUsers", this.users.slice().reverse());
     },
     checkedUser({ value, user }: any) {
+      // Emit data to parent - this data comes from child component as function payload
       this.$emit("checkedUser", { value: value, user: user });
     },
     checkAllUsers() {
+      // All users checkbox click function
+      // Emits all users checked data value to parent
       this.allUsersChecked = !this.allUsersChecked;
       this.$emit("allUsersChecked", this.allUsersChecked);
     },

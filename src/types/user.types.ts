@@ -1,3 +1,4 @@
+// Type definition for user
 export interface userProperties {
   avatar: string;
   email: string;

@@ -1,4 +1,4 @@
-// Override Naive UI components styles
+// Override Naive UI default theme components styles
 import type { GlobalThemeOverrides } from "naive-ui";
 
 const $brand = "#475DE5";

@@ -1,4 +1,5 @@
 <template>
+  <!-- Naive-UI specific config around the main app component -->
   <n-config-provider :theme-overrides="themeOverrides">
     <RouterView />
   </n-config-provider>
@@ -13,6 +14,7 @@ import { defineComponent } from "vue";
 export default defineComponent({
   setup() {
     return {
+      // Adding Naive-UI theme overrides to the app.
       themeOverrides,
     };
   },
